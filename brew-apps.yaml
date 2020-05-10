@@ -1,3 +1,4 @@
+---
 - name: Install OSX applications
   hosts: localhost
   become: false

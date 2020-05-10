@@ -1,13 +1,14 @@
+---
 - name: Configure shell
   hosts: localhost
-  tasks:  
-    - name: Installing oh-my-zsh
-      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-      register: result
-      until: result is successful
-    
+  tasks:
     - name: Set default shell to zsh
       shell: chsh -s /bin/zsh
+      register: result
+      until: result is successful
+
+    - name: Installing Oh My Zsh
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
       register: result
       until: result is successful
     
@@ -19,19 +20,24 @@
         cd ..
         rm -rf fonts
     
-    - name: Install zsh-completion plugin for oh-my-zsh
+    - name: Install zsh-syntax-highlighting plugin for Oh My Zsh
       shell: git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
       register: result
       until: result is successful
     
-    - name: Install zsh-autosuggestions
+    - name: Install zsh-autosuggestions plugin for Oh My Zsh
       shell: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
       register: result
       until: result is successful
     
-    - name: Set oh-my-zsh theme
+    - name: Set Oh My Zsh theme to agnoster
+      replace:
+        path: ~/.zshrc
+        regexp: '^ZSH_THEME=.*$'
+        replace: 'ZSH_THEME=\"agnoster\"'
+    
+    - name: Activate Oh My Zsh plugins
       replace:
         path: ~/.zshrc
         regexp: 'plugins=\$\(.*\)$'
         replace: 'plugins=\$\(git golang zsh-syntax-highlighting zsh-autosuggestions)'
-
