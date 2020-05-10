@@ -1,6 +1,6 @@
 # Ansible Dev-env Setup
 
-An Ansible playbook to setup bare development machines to my liking.
+An Ansible playbook to setup bare OSX development machines to my liking.
 
 ## What's Included ?
 
