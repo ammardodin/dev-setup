@@ -1,0 +1,1 @@
+An Ansible playbook to setup bare development machines to my liking.

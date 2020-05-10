@@ -1,0 +1,4 @@
+---
+- import_playbook: brew-packages.yaml
+- import_playbook: brew-apps.yaml
+- import_playbook: shell-setup.yaml

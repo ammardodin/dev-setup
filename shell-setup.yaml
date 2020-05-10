@@ -1,0 +1,37 @@
+- name: Configure shell
+  hosts: localhost
+  tasks:  
+    - name: Installing oh-my-zsh
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      register: result
+      until: result is successful
+    
+    - name: Set default shell to zsh
+      shell: chsh -s /bin/zsh
+      register: result
+      until: result is successful
+    
+    - name: Installing power-line fonts
+      shell: |
+        git clone https://github.com/powerline/fonts.git --depth=1
+        cd fonts
+        ./install.sh
+        cd ..
+        rm -rf fonts
+    
+    - name: Install zsh-completion plugin for oh-my-zsh
+      shell: git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+      register: result
+      until: result is successful
+    
+    - name: Install zsh-autosuggestions
+      shell: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+      register: result
+      until: result is successful
+    
+    - name: Set oh-my-zsh theme
+      replace:
+        path: ~/.zshrc
+        regexp: 'plugins=\$\(.*\)$'
+        replace: 'plugins=\$\(git golang zsh-syntax-highlighting zsh-autosuggestions)'
+
