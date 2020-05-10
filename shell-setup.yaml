@@ -34,7 +34,7 @@
       replace:
         path: ~/.zshrc
         regexp: '^ZSH_THEME=.*$'
-        replace: 'ZSH_THEME=\"agnoster\"'
+        replace: 'ZSH_THEME="agnoster"'
     
     - name: Activate Oh My Zsh plugins
       replace:
