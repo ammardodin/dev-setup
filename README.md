@@ -9,7 +9,6 @@ An Ansible playbook approach to setting up bare OSX development machines to my l
 2. Applications
     - Docker
     - Firefox
-    - Google Chrome
     - iTerm2
     - LastPass
     - Slack
