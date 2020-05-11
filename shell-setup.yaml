@@ -39,5 +39,5 @@
     - name: Activate Oh My Zsh plugins
       replace:
         path: ~/.zshrc
-        regexp: 'plugins=\$\(.*\)$'
+        regexp: '^plugins=\$\(.*\)$'
         replace: 'plugins=\$\(git golang zsh-syntax-highlighting zsh-autosuggestions)'
