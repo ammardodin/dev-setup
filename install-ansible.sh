@@ -19,12 +19,6 @@ if [[ ! -x "/usr/local/bin/brew" ]]; then
     echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" > /dev/null
 fi
 
-# Install Python 2
-if [[ ! -d "/usr/local/Cellar/python" ]]; then
-    echo "Installing python 2"
-    brew install python
-fi
-
 # Install Python 3
 if [[ ! -d "/usr/local/Cellar/python3" ]]; then
     echo "Installing python 3"
@@ -32,7 +26,6 @@ if [[ ! -d "/usr/local/Cellar/python3" ]]; then
 fi
 
 # Update pip packages
-/usr/local/bin/pip install -U pip setuptools wheel
 /usr/local/bin/pip3 install -U pip setuptools wheel
 
 # Install Ansible
